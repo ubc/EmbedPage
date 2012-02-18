@@ -1,0 +1,15 @@
+INSTALLATION
+
+1. Unpack the extension in the extensions dir. 
+
+2. Add to LocalSettings.php 
+require_once("$IP/extensions/EmbedPage/EmbedPage.php");
+
+## Use with extension https://github.com/ubc/EmbedTracker 
+## if you want to see who is embedding your pages.
+
+DEPENDENCIES
+
+Requires PHP/cURL . If anyone knows a hook to pull the rawHTML output please let me know
+so this dependency can be removed.
+
