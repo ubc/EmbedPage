@@ -57,7 +57,7 @@ function getUrlContents($title){
 		));
 	
 	$ret = curl_exec($crl);
-    curl_close($crl);
+    	curl_close($crl);
    
     return $ret;
 }
