@@ -46,7 +46,7 @@ function wfEmbedPageToolboxLink($template) {
 	
 	$pageTitle = $wgArticle->getTitle();
     
-    $dbKey = $pageTitle->getPrefixedDBkey();
+    	$dbKey = $pageTitle->getPrefixedDBkey();
      
  	$embedAction = "document.getElementById('article_embed').style.display = (document.getElementById('article_embed').style.display != 'none' ? 'none' : '' ); return false";
 
