@@ -72,6 +72,9 @@ if(empty($embedPageTitle)){
 	// Get the raw HTML content
 	$embedPageContent = getUrlContents($embedPageTitle);
 	
+	// Open a href in new windows to prevent issues in LMS iframes 
+	$embedPageContent = str_replace('href="htt',' target="_blank" href="htt', $embedPageContent);  
+	
 	if(empty($embedPageContent)){
 		echo"Error: retrieving wiki page content.";
 		exit();
