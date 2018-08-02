@@ -2,14 +2,14 @@
 /**
  * Main include file for the Embed Page extension of MediaWiki.
  * This code is released under the GNU General Public License.
- * 
+ *
  *
  * Purpose:
  *     creates an embed option for wiki pages works with the https://github.com/ubc/EmbedTracker  extension
  *
  * Usage:
  *     require_once("extensions/EmbedPage/EmbedPage.php"); in LocalSettings.php
- * 
+ *
  * @package MediaWiki
  * @subpackage Extensions
  * @author Scott McMillan (email: user "scott.mcmillan" at ubc.ca)  UBC Centre for Teaching, Learning and Technology
@@ -25,7 +25,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['parserhook'][] = array(
         'path' => __FILE__,
         'name' => 'EmbedPage',
-        'version' => '1.00',
+        'version' => '1.01',
         'description' => 'Creates an embed syndication option for a wiki article.',
         'author' => array('Scott McMillan'),
 );
@@ -40,22 +40,27 @@ $wgHooks['SkinTemplateToolboxEnd'][] = 'wfEmbedPageToolboxLink';
 
 function wfEmbedPageToolboxLink($template) {
 
- global $wgServer, $wgScript, $wgArticle;
- 
- if (!$wgArticle) return true;
-	
-	$pageTitle = $wgArticle->getTitle();
-    
-    	$dbKey = $pageTitle->getPrefixedDBkey();
-     
- 	$embedAction = "document.getElementById('article_embed').style.display = (document.getElementById('article_embed').style.display != 'none' ? 'none' : '' ); return false";
+    global $wgServer, $wgScript;
 
-	$embedPageCode = "<script type=\"text/javascript\"> document.write('<script type=\"text/javascript\" charset=\"utf-8\" src=\"$wgServer/extensions/EmbedPage/getPage.php?title=$wgScript/$dbKey&referer=' + document.location.href + ' \"><\/script>');</script>";
+    $pageSkin = $template->getSkin();
+    if (! $pageSkin) {
+        return true;
+    }
+    $pageTitle = $pageSkin->getTitle();
+    if (! $pageTitle) {
+        return true;
+    }
+    $dbKey = $pageTitle->getPrefixedDBkey();
 
-  	echo "<li><a href='#' onclick=\"$embedAction\">Embed Page</a></li>";
-  
-  	echo "<div id='article_embed' style='display:none'><textarea style=\"margin:0; width:95%;font-size:10px; height:120px;\" onClick=\"this.select();\">$embedPageCode</textarea></div>";
-   
-  	return true;
+    $embedAction = "document.getElementById('article_embed').style.display = (document.getElementById('article_embed').style.display != 'none' ? 'none' : '' ); return false";
+
+    // urlencode $dbKey twice to handle special characters
+    $embedPageCode = "<script type=\"text/javascript\"> document.write('<script type=\"text/javascript\" charset=\"utf-8\" src=\"$wgServer/extensions/EmbedPage/getPage.php?title=$wgScript/" . urlencode(urlencode($dbKey)) . "&referer=' + document.location.href + ' \"><\/script>');</script>";
+
+    echo "<li><a href='#' onclick=\"$embedAction\">Embed Page</a></li>";
+
+    echo "<div id='article_embed' style='display:none'><textarea style=\"margin:0; width:95%;font-size:10px; height:120px;\" onClick=\"this.select();\">$embedPageCode</textarea></div>";
+
+    return true;
 }
 ?>
