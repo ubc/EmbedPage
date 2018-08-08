@@ -51,6 +51,8 @@ function getUrlContents($title){
 	curl_setopt ($crl, CURLOPT_URL,$embedPageUrl);
 	curl_setopt ($crl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt ($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
+	// turn on follow location to handle https redirection
+	curl_setopt ($crl, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt ($crl, CURLOPT_HTTPHEADER, array(
 		'Referer: '.$referer, 
 		'User-Agent: EmbedPage', 
