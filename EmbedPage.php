@@ -56,10 +56,14 @@ function wfEmbedPageToolboxLink($template) {
 
     // urlencode $dbKey twice to handle special characters
     $embedPageCode = "<script type=\"text/javascript\"> document.write('<script type=\"text/javascript\" charset=\"utf-8\" src=\"$wgServer/extensions/EmbedPage/getPage.php?title=$wgScript/" . urlencode(urlencode($dbKey)) . "&referer=' + document.location.href + ' \"><\/script>');</script>";
+    $embedPageCode1 = "<iframe style=\"height: 100vh; width: 100%; border: 0 none;\" src=\"$wgServer/$wgScript/" . urlencode(urlencode($dbKey)) . "?action=render\"></iframe>";
 
     echo "<li><a href='#' onclick=\"$embedAction\">Embed Page</a></li>";
 
-    echo "<div id='article_embed' style='display:none'><textarea style=\"margin:0; width:95%;font-size:10px; height:120px;\" onClick=\"this.select();\">$embedPageCode</textarea></div>";
+    echo '<div id="article_embed" style="display:none;">
+        <span style="font-size:10px;">Canvas:</span><textarea style="margin:0; width:95%;font-size:10px; height:120px;" onClick="this.select();">' . $embedPageCode1 . '</textarea><br/>
+        <span style="font-size:10px;">Others:</span><textarea style="margin:0; width:95%;font-size:10px; height:120px;" onClick="this.select();">' . $embedPageCode . '</textarea>
+         </div>';
 
     return true;
 }
