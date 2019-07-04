@@ -55,8 +55,8 @@ function wfEmbedPageToolboxLink($template) {
     $embedAction = "document.getElementById('article_embed').style.display = (document.getElementById('article_embed').style.display != 'none' ? 'none' : '' ); return false";
 
     // urlencode $dbKey twice to handle special characters
-    $embedPageCode = "<script type=\"text/javascript\"> document.write('<script type=\"text/javascript\" charset=\"utf-8\" src=\"$wgServer/extensions/EmbedPage/getPage.php?title=$wgScript/" . urlencode(urlencode($dbKey)) . "&referer=' + document.location.href + ' \"><\/script>');</script>";
-    $embedPageCode1 = "<iframe style=\"height: 100vh; width: 100%; border: 0 none;\" src=\"$wgServer/$wgScript/" . urlencode(urlencode($dbKey)) . "?action=render\"></iframe>";
+    $embedPageCode = "<script type=\"text/javascript\"> document.write('<script type=\"text/javascript\" charset=\"utf-8\" src=\"$wgServer/extensions/EmbedPage/getPage.php?title=$wgScript/" . urlencode($dbKey) . "&referer=' + document.location.href + ' \"><\/script>');</script>";
+    $embedPageCode1 = "<iframe style=\"height: 100vh; width: 100%; border: 0 none;\" src=\"" . $wgServer . $wgScript . "/" . urlencode($dbKey) . "?action=render\"></iframe>";
 
     echo "<li><a href='#' onclick=\"$embedAction\">Embed Page</a></li>";
 
