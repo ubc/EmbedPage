@@ -45,7 +45,7 @@ class EmbedPageHooks {
 		$embedPageCode1 = "<iframe style=\"height: 100vh; width: 100%; border: 0 none;\" src=\"" . $wgServer . $wgScript . "/" . urlencode($dbKey) . "?action=render\"></iframe>";
 		$embedBox1 = "<span style=\"font-size:10px;\">Canvas:</span><textarea style=\"margin:0; width:95%;font-size:10px; height:120px;\" onClick=\"this.select();\">" . $embedPageCode1 . "</textarea>";
 
-		$embedAction = 'if($("#article_embed").length == 0) {$("#embed-page").parent().append(\'<div id="article_embed">' . $embedBox1 . '<br/>' . $embedBox . '</div>\');} else {$(\'#article_embed\').toggle();}';
+		$embedAction = 'if($("#article_embed").length == 0) {$("#embed-page").parent().append(\'<div id="article_embed">' . $embedBox1 . '<br/>' . $embedBox . '</div>\');} else {$(\'#article_embed\').toggle();}; return false;';
 		$sidebar['TOOLBOX'][] = [
 			"id"   => "embed-page",
 			"text" => "Embed Page",
