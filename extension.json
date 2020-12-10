@@ -1,0 +1,22 @@
+{
+  "name": "EmbedPage",
+  "author": [
+	"Scott McMillan",
+	"Pan Luo"
+  ],
+  "url": "https://github.com/ubc/EmbedPage",
+  "descriptionmsg": "Creates an embed syndication option for a wiki article.",
+  "license-name": "GPL-3.0-or-later",
+  "type": "other",
+  "requires": {
+	"MediaWiki": ">= 1.31.0"
+  },
+  "manifest_version": 2,
+  "version": "2.0",
+  "AutoloadClasses": {
+	"EmbedPageHooks": "EmbedPageHook.php"
+  },
+  "Hooks": {
+	"SidebarBeforeOutput": "EmbedPageHooks::onSidebarBeforeOutput"
+  }
+}
