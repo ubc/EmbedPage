@@ -40,7 +40,7 @@ class EmbedPageHooks {
 		$dbKey = $pageTitle->getPrefixedDBkey();
 
 		// urlencode $dbKey twice to handle special characters
-		$embedPageCode = "<script type=\"text/javascript\">document.write(\'<script type=\"text/javascript\" charset=\"utf-8\" src=\"$wgServer/extensions/EmbedPage/getPage.php?title=$wgScript/" . urlencode($dbKey) . "&referer=' + document.location.href + ' \"><\/script>\');</script>";
+		$embedPageCode = "<script type=\"text/javascript\">document.write(\'<script type=\"text/javascript\" charset=\"utf-8\" src=\"$wgServer/extensions/EmbedPage/getPage.php?title=$wgScript/" . urlencode($dbKey) . "&referer=\' + document.location.href + \' \"><\\\/script>\');</script>";
 		$embedBox = "<span style=\"font-size:10px;\">Others:</span><textarea style=\"margin:0; width:95%;font-size:10px; height:120px;\" onClick=\"this.select();\">" . $embedPageCode . "</textarea>";
 		$embedPageCode1 = "<iframe style=\"height: 100vh; width: 100%; border: 0 none;\" src=\"" . $wgServer . $wgScript . "/" . urlencode($dbKey) . "?action=render\"></iframe>";
 		$embedBox1 = "<span style=\"font-size:10px;\">Canvas:</span><textarea style=\"margin:0; width:95%;font-size:10px; height:120px;\" onClick=\"this.select();\">" . $embedPageCode1 . "</textarea>";
